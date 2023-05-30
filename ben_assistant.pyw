@@ -85,34 +85,6 @@ def googlebard():
 
 
 
-def closechrome():
-    speak("what to do sir?")
-    tt = takecommand()
-    if 'close this tab' in query:
-        keyboard.press_and_release('ctrl + w')
-    elif 'open new tab' in query:
-        keyboard.press_and_release("ctrl + t")
-
-
-
-
-
-#for translating hindi
-# def translate(text):
-#     line = str(text)
-#     translate = Translator()
-#     res = translate.translate(line, language='hi')
-#     data = res.text
-#     print(f"you: {data}")
-#     return data
-
-# #connected the mic with the translator
-# def micexecute():
-#     query = takecommand()
-#     data = translate(query)
-#     return data
-
-
 #to start ben with clap
 
 INITIAL_TAP_THRESHOLD = 0.1
@@ -219,7 +191,6 @@ def Tester():
             print("")
             print('clap detected: waking up Ben')
             print("")
-           # os.startfile(r"please_run_ben_godamnit.py")
             break
 
 
@@ -238,7 +209,7 @@ if __name__ == "__main__":
    
     while True:
         query = takecommand().lower()
-        #query = micexecute().lower()
+ 
 
         if 'friday' in query:
             engine = pyttsx3.init('sapi5')
@@ -266,9 +237,7 @@ if __name__ == "__main__":
             speak('restarting system')
             os.system("shutdown /r /t 1")
 
-        # if 'date' in query:
-        #     d = datetime.date.today()
-        #     speak(f"sir! today's date is {d}")
+
 
         if 'joke' in query:
             joke = pyjokes.get_joke(language='en', category='all')
@@ -282,23 +251,6 @@ if __name__ == "__main__":
             q = query.replace("play", "")
             pywhatkit.playonyt(q)
         
-        if 'quit youtube' in query:
-            speak("what is the command")
-            tt = takecommand()
-            if 'pause' in tt:
-                keyboard.press('space bar')
-            if 'restart video' in query:
-                keyboard.press('0')
-            if 'mute' in query:
-                keyboard.press('m')
-            if 'skip' in query:
-                keyboard.press('l')
-            if 'rewind' in query:
-                keyboard.press('j')
-            speak("done boss")
-        
-        if 'quit chrome' in query:
-            closechrome()
 
         if 'screenshot' in query:
             ss = pyautogui.screenshot(r"E:\ben\ss.png")
@@ -317,15 +269,6 @@ if __name__ == "__main__":
             qu = client.query(query)
             out = next(qu.results).text
             speak('fetching weather')
-            time.sleep(0.5)
-            speak(out)
-            print(out)
-        if 'facts' in query:
-            client = wolframalpha.Client('2E8LHA-3Q57WJGGKT')
-            res = str(query)
-            qu = client.query(query)
-            out = next(qu.results).text
-            speak('searching for facts..')
             time.sleep(0.5)
             speak(out)
             print(out)
@@ -361,11 +304,7 @@ if __name__ == "__main__":
             except:
                 speak("sorry boss! but i couldn't find anything more relevant to your search.")
 
-        if 'how are you' in query:
-            speak('im fine sir.')
-       
-        if 'your day' in query:
-            speak('my day was good sir.')
+        
 
         if 'wiki' in query:
             speak('searching wikipedia')
@@ -379,29 +318,5 @@ if __name__ == "__main__":
             break
             quit()
           
-
-        # to tell me the time
-        # elif 'the time' in query:
-        #     strtime = datetime.datetime.now().strftime('%H:%M:%S')
-        #     speak(f"sir the time is {strtime}")
-
-        #to open vscode
-        elif 'open code' in query:
-            pathh = "C:\\Users\\HINDOL\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
-            speak("opening vs code")
-            os.startfile(pathh)
-
-        #to open chrome
-        elif 'open chrome' in query:
-            pat = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-            speak("opening chrome")
-            os.startfile(pat)
-        #to open spotify
-        elif 'open spotify' in query:
-            pat = "C:\\Users\\HINDOL\\AppData\\Roaming\\Spotify\\Spotify.exe"
-            speak("opening spotify")
-            os.startfile(pat)
-
-
         elif 'whatsapp' in query: #to open whatsapp
             webbrowser.open("https://web.whatsapp.com/")
